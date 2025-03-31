@@ -1,4 +1,4 @@
-from Evento import Evento
+from classes.Evento import Evento
 from datetime import datetime, date
 
 bd = []
@@ -36,7 +36,7 @@ class Organizador:
         
         print('Empresa cadastrada com sucesso')  
         return novo_organizador
-    
+    # @staticmethod
     def criar_evento(self):
         nome_evento = input('Nome do evento: ').strip().upper()
         descricao_evento = input('Descrição do evento: ').strip().upper()
@@ -54,27 +54,30 @@ class Organizador:
                 
             except ValueError:
                 print("Data inválida. Use o formato dd/mm/aaaa.") 
-            novo_evento = Evento(nome_evento, descricao_evento, self.nome, faixa_etaria, data_objeto)
-            
+            horario = input('Horário do evento: ')
+            novo_evento = Evento(nome_evento, descricao_evento, self.nome , faixa_etaria, data_objeto, horario)
             eventos.append({
                 'nome_evento': novo_evento.nome_evento,
                 'descricao_evento': novo_evento.descricao_do_evento,
                 'organizador': self.nome,
                 'faixa_etaria': novo_evento.faixa_etaria,
-                'data_evento': data_objeto.strftime("%d/%m/%Y")
+                'data_evento': data_objeto.strftime("%d/%m/%Y"),
+                'horario': horario
                             })
             print('Evento criado com sucesso')
             return novo_evento
         
     @staticmethod
     def fazer_login(cnpj):
-        cliente = next((cliente for cliente in bd if cliente['cnpj'] == cnpj), None)
-        if cliente:
-            print(f"Bem-vindo(a), {cliente['nome']}!")
-            return cliente  
-        else:
-            print("CNPJ não encontrado. Faça o cadastro.")
-            return None
+        for organizador_info in bd:  # Itera sobre a lista bd
+            if organizador_info['cnpj'] == cnpj:
+                print(f"Bem-vindo(a), {organizador_info['nome']}!")
+                # Cria uma instância de Organizador com os dados encontrados
+                organizador_instancia = Organizador(organizador_info['nome'], organizador_info['cnpj'], organizador_info['email'])
+                return organizador_instancia  # Retorna a instância
+        
+        print("CNPJ não encontrado. Faça o cadastro.")
+        return None
     
     
     def exibir_eventos():

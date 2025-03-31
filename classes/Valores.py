@@ -1,5 +1,5 @@
 from Evento import Evento
-from funcoes import colunas
+from utilitarios.funcoes import colunas
 # composição entre as classes.
 
 class Valores:

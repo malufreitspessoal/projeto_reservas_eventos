@@ -1,5 +1,5 @@
 from datetime import datetime
-from funcoes import colunas
+from utilitarios.funcoes import colunas
 
 bd = [] # lista de dicionarios
 #mais pra frente criar um bd real

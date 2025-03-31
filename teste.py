@@ -1,6 +1,6 @@
-from funcoes import colunas
-from Cliente import Cliente
-from Organizador import Organizador
+from utilitarios.funcoes import colunas
+from classes.Cliente import Cliente
+from classes.Organizador import Organizador
 
 class Menu:
     def exibir_mensagem_saida(mensagem):

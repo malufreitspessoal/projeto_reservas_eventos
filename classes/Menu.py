@@ -1,7 +1,7 @@
 # from Reserva import Reserva
-from funcoes import colunas
-from Cliente import Cliente, bd
-from Organizador import Organizador, bd
+from utilitarios.funcoes import colunas
+from classes.Cliente import Cliente, bd
+from classes.Organizador import Organizador, bd
    
 class Menu:
     
@@ -16,19 +16,22 @@ class Menu:
     def menu_cliente():    
         while True:
             print(f'''
-            {colunas} Bem vindo Organizador {colunas}
+            {colunas} Bem vindo de volta {colunas}
             
-            LO - Fazer login
-            CA - Cadastrar nova empresa
+            RC - Realizar compra
+            EC - Exibir compra
+            CC -  Cancelar compra
             
             SAIR - Sair
             
             ''')
         
-            opcao = Menu.obter_opcao_menu(['LO', 'CA', 'SAIR'])
+            opcao = Menu.obter_opcao_menu(['RC', 'EX', 'CC', 'SAIR'])
             match opcao:
-                case 'LO':
+                case 'RC':
                     pass
+                case 'SAIR':
+                    break
 
     def menu_login():
         while True:
@@ -82,24 +85,26 @@ class Menu:
                     print(f" {colunas} Fala Organizador ! Eventlu já estavá com saudade {colunas}")
                     cnpj = input('Insira CNPJ (somente números): ').strip()
                     
-                    Organizador.fazer_login(cnpj)
-                    Menu.menu_login_admin()            
+                    organizador_instancia = Organizador.fazer_login(cnpj)
+                    if organizador_instancia:
+                        Menu.menu_login_admin(organizador_instancia) 
+                             
                 case 'CA':
-                    Organizador.criar_organizador()
-                            
+                     Organizador.criar_organizador()
+                    # return organizar_objeto
                 case 'SAIR':
                     print('Quero te ver em breve hein? Até mais')
                     break
                 
                 case '_':
                        print('Opção Inválida, tente novamente')
-
+             
 
                     
-    def menu_login_admin():
+    def menu_login_admin(organizador_instancia):
         while True:
             print(f'''
-                Bem vindo ao Eventlu - {Organizador.self.nome}
+                Bem vindo ao Eventlu - 
                 
             
                 CA - Cadastrar novo Evento
@@ -114,7 +119,7 @@ class Menu:
             opcao = Menu.obter_opcao_menu(['CA', 'EB', 'EX', 'SAIR'])
             match opcao:
                 case 'CA':
-                    Organizador.criar_evento()
+                    organizador_instancia.criar_evento()
                 
                 case 'EB':
                     pass
