@@ -10,6 +10,6 @@ PLUS
 
 
 '''
-from classes.Menu import Menu
+from Views.Menu import menu
 
-Menu.menu_login()
+menu()
