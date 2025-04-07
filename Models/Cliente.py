@@ -27,11 +27,11 @@ class Cliente:
                 return
             break
 
-        nome = input('Informe seu nome completo: ')  
+        nome = input('Informe seu nome completo: ').upper().strip()  
         
         data_nascimento = input('Informe a data de nascimento (dd-mm-aaaa): ') 
         
-        email = input('Informe seu melhor email: ')       
+        email = input('Informe seu melhor email: ').upper().strip()      
         novo_usuario =cls(nome, cpf, email , data_nascimento) 
         Cliente.bd.append({'nome': novo_usuario.nome,
                     'cpf' : novo_usuario.cpf,
