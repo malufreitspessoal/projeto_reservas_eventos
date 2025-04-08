@@ -3,7 +3,7 @@ from utilitarios.funcoes import colunas
 from Models.Cliente import Cliente
 from Models.Organizador import Organizador
 from Models.Evento import Evento
-from Controllers.requisicoes import *
+from Controllers.requisicoes import cadastrar_cliente
 '''
 Se criamos várias funcoes de menu, o objeto que a gente criar nao vai ser possivel ser chamado ou complica mais por exemplo quero chamar o objeto organizador
 '''
@@ -69,7 +69,8 @@ def menu():
 
             case 'CA':
                 obj_cliente = Cliente.criar_user()
-                cadastrar_cliente()
+                cadastrar_cliente(obj_cliente)
+
 
             
             case 'ADMIN':

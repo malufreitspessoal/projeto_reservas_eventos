@@ -5,7 +5,6 @@ from utilitarios.funcoes import colunas
 #mais pra frente criar um bd real
 
 class Cliente:
-    bd = []
     def __init__(self, nome, cpf, email, data_nascimento):
         self.nome = nome
         self.cpf = cpf
@@ -33,11 +32,6 @@ class Cliente:
         
         email = input('Informe seu melhor email: ').upper().strip()      
         novo_usuario =cls(nome, cpf, email , data_nascimento) 
-        Cliente.bd.append({'nome': novo_usuario.nome,
-                    'cpf' : novo_usuario.cpf,
-                    'data_nascimento': novo_usuario.data_nascimento,
-                    'email': novo_usuario.email
-                    }) 
         
         print('Usuário cadastrado com sucesso')
         # print(Cliente.bd)  
